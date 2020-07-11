@@ -22,7 +22,11 @@ export default function IndexPage({ merchant, categories, products }) {
     <React.Fragment>
       <h1>{merchant.business_name}</h1>
 
-      <h3>Categories</h3>
+      <h3>
+        <Link href="/categories">
+          <a>Categories</a>
+        </Link>
+      </h3>
 
       <ul>
         {categories.map(({ name, slug }) => (
@@ -34,7 +38,11 @@ export default function IndexPage({ merchant, categories, products }) {
         ))}
       </ul>
 
-      <h3>Products</h3>
+      <h3>
+        <Link href="/products">
+          <a>Products</a>
+        </Link>
+      </h3>
 
       <ProductList products={products} />
     </React.Fragment>
