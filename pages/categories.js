@@ -18,10 +18,10 @@ export default function CategoriesPage({ categories }) {
       <h1>Categories</h1>
 
       <ul>
-        {categories.map((product) => (
-          <li key={product.slug}>
-            <Link href={`/categories/${product.slug}`}>
-              <a>{product.name}</a>
+        {categories.map((category) => (
+          <li key={category.slug}>
+            <Link href={`/categories/${category.slug}`}>
+              <a>{category.name}</a>
             </Link>
           </li>
         ))}
