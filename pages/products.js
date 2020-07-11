@@ -1,4 +1,5 @@
 import commercejs from "../lib/commercejs";
+import ProductList from "../components/ProductList";
 
 export async function getStaticProps() {
   const { data: products } = await commercejs.products.list();
