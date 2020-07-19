@@ -1,4 +1,4 @@
-import commercejs from "../../lib/commercejs";
+import commercejs from "../../lib/commerce";
 
 export async function getStaticProps({ params }) {
   const { permalink } = params;

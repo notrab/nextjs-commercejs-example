@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-import commercejs from "../lib/commercejs";
+import commercejs from "../lib/commerce";
+import CategoryList from "../components/CategoryList";
 import ProductList from "../components/ProductList";
 
 export async function getStaticProps() {
@@ -28,15 +29,7 @@ export default function IndexPage({ merchant, categories, products }) {
         </Link>
       </h3>
 
-      <ul>
-        {categories.map(({ name, slug }) => (
-          <li key={slug}>
-            <Link href={`/categories/${slug}`}>
-              <a>{name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <CategoryList categories={categories} />
 
       <h3>
         <Link href="/products">

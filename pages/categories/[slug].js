@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-import commercejs from "../../lib/commercejs";
+import commercejs from "../../lib/commerce";
 import ProductList from "../../components/ProductList";
 
 export async function getStaticProps({ params }) {
@@ -9,6 +7,7 @@ export async function getStaticProps({ params }) {
   const category = await commercejs.categories.retrieve(slug, {
     type: "slug",
   });
+
   const { data: products } = await commercejs.products.list({
     category_slug: slug,
   });

@@ -1,6 +1,5 @@
-import Link from "next/link";
-
-import commercejs from "../lib/commercejs";
+import commercejs from "../lib/commerce";
+import CategoryList from "../components/CategoryList";
 
 export async function getStaticProps() {
   const { data: categories } = await commercejs.categories.list();
@@ -17,15 +16,7 @@ export default function CategoriesPage({ categories }) {
     <React.Fragment>
       <h1>Categories</h1>
 
-      <ul>
-        {categories.map((category) => (
-          <li key={category.slug}>
-            <Link href={`/categories/${category.slug}`}>
-              <a>{category.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <CategoryList categories={categories} />
     </React.Fragment>
   );
 }
