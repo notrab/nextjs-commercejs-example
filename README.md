@@ -106,7 +106,7 @@ export default function IndexPage({ merchant, categories, products }) {
 }
 ```
 
-### 4. Create `ProductList`/`Product` component
+### 4. Create `ProductList` & `Product` components
 
 As we want to show our products in multiple places throughout this example, we should think about creating reusable React components to save us on duplicating our code.
 
@@ -161,7 +161,7 @@ In this file we're doing a few things, so let's break it down:
 3. Checking if the prop `products` contains anything, if not, don't do anything
 4. Mapping over each of our `products` and invoking the `Link` component with `Product` as our child - where we spread in our `product` values (such as name/price) we need inside that component
 
-### 5. Update index page to use ProductList component
+### 5. Update index page to use `ProductList` component
 
 Let's now put the `ProductList` component to work! Inside `pages/index.js`, let's add a new import right after the commerce.js client.
 
@@ -188,6 +188,7 @@ Since our index page contains the links to all our categories, products, and mer
 Create a new file `products.js` inside `pages` directory, and add the following:
 
 ```js
+// pages/products.js
 import commerce from "../lib/commerce";
 import ProductList from "../components/ProductList";
 
@@ -216,13 +217,14 @@ In here we're importing the same components we used on the homepage but this tim
 
 The benefit of creating the `ProductList` component once is that we can reuse it wherever we like, as long as we pass it the `products` prop, it'll work just fine.
 
-### 7. Create `CategoryList`/`Category` component
+### 7. Create `CategoryList` & `Category` components
 
 In the same way we created the `ProductList` and `Product` components, we'll do the same for our categories.
 
 Inside a new file `Category.js` inside the `components` directory, add the following:
 
 ```js
+// components/Category.js
 export default function Category({ name }) {
   return name;
 }
@@ -233,6 +235,7 @@ We're not doing too much in this file but return the `name` of our category.
 Next create the file `CategoryList.js` inside the `components` directory, and add the following:
 
 ```js
+// components/CategoryList.js
 import Link from "next/link";
 
 import Category from "./Category";
@@ -263,6 +266,7 @@ The only real difference here is that we returned a list of links that go to `/c
 Let's also do the same for categories. In a new file `categories.js` inside the `pages` directory, add the following:
 
 ```js
+// pages/categories.js
 import commerce from "../lib/commerce";
 import CategoryList from "../components/CategoryList";
 
@@ -322,6 +326,7 @@ import Link from "next/link";
 Now update the `IndexPage` function to look a little something like:
 
 ```js
+// pages/index.js
 export default function IndexPage({ merchant, categories, products }) {
   return (
     <React.Fragment>
@@ -362,6 +367,7 @@ Inside `pages/categories/[slug].js` we will use the same `getStaticProps` method
 To do this, we can provide the current `slug` given to use by the current page path, to Commerce.js so we [filter](https://commerce.com/docs/api/#list-all-products) [accordingly](https://commerce.com/docs/api/#retrieve-category).
 
 ```js
+// pages/categories/[slug].js
 import commerce from "../../lib/commerce";
 import ProductList from "../../components/ProductList";
 
@@ -392,6 +398,7 @@ Below the `getStaticProps` export, export a new function `getStaticPaths`.
 This function must return a `paths` array that is the paths to our pages. We must provide that all important `slug` param.
 
 ```js
+// pages/categories/[slug].js
 export async function getStaticPaths() {
   const { data: categories } = await commerce.categories.list();
 
@@ -409,6 +416,7 @@ export async function getStaticPaths() {
 All that's left to do is export as the default our actual category page component.
 
 ```js
+// pages/categories/[slug].js
 export default function CategoryPage({ category, products }) {
   return (
     <React.Fragment>
@@ -420,8 +428,6 @@ export default function CategoryPage({ category, products }) {
 }
 ```
 
-That's it!
-
 ### 11. Create product page
 
 In the same way we created our category pages, and fetched the data, we can do it for products.
@@ -431,6 +437,7 @@ Inside of a new directory `products` inside `pages`, create the file `[permalink
 The contents of this file should be familiar:
 
 ```js
+// pages/products/[permalink].js
 import commerce from "../../lib/commerce";
 
 export async function getStaticProps({ params }) {
@@ -470,6 +477,8 @@ export default function ProductPage({ product }) {
 }
 ```
 
-### 12. Run it locally!
+That's it!
 
-That's it! Now you're ready to go! Type `npm run dev` in your Terminal, and head to the local port to browse your Next.js powered commerce site.
+### 12. Run it locally
+
+Now you're ready to go! Type `npm run dev` in your Terminal, and head to the local port to browse your Next.js powered commerce site.
