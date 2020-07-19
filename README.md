@@ -9,7 +9,7 @@ This repo contains all of the code necessary to create a static commerce with Ne
 ## Run this locally
 
 1. `npm install`
-2. Add your `CHEC_PUBLIC_KEY` to `.env`
+2. Add your `NEXT_PUBLIC_CHEC_PUBLIC_API_KEY` to `.env`
 3. `npm run dev`
 
 ## Build it with me
@@ -42,7 +42,7 @@ Open `package.json` and add the following scripts:
 Now create a new file `.env` and add your public API key here.
 
 ```
-CHEC_PUBLIC_KEY=...
+NEXT_PUBLIC_CHEC_PUBLIC_API_KEY=...
 ```
 
 ### 2. Create Commerce.js instance
@@ -55,7 +55,7 @@ Inside a new directory `lib`, create the file `commerce.js`. Inside here we'll e
 // lib/commerce.js
 import CommerceSDK from "@chec/commerce.js";
 
-const client = new CommerceSDK(process.env.CHEC_PUBLIC_KEY);
+const client = new CommerceSDK(process.env.NEXT_PUBLIC_CHEC_PUBLIC_API_KEY);
 
 export default client;
 ```
