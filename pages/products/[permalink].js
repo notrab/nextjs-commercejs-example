@@ -1,9 +1,9 @@
-import commercejs from "../../lib/commerce";
+import commerce from "../../lib/commerce";
 
 export async function getStaticProps({ params }) {
   const { permalink } = params;
 
-  const product = await commercejs.products.retrieve(permalink, {
+  const product = await commerce.products.retrieve(permalink, {
     type: "permalink",
   });
 
@@ -15,7 +15,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const { data: products } = await commercejs.products.list();
+  const { data: products } = await commerce.products.list();
 
   return {
     paths: products.map((product) => ({

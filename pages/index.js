@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-import commercejs from "../lib/commerce";
+import commerce from "../lib/commerce";
 import CategoryList from "../components/CategoryList";
 import ProductList from "../components/ProductList";
 
 export async function getStaticProps() {
-  const merchant = await commercejs.merchants.about();
-  const { data: categories } = await commercejs.categories.list();
-  const { data: products } = await commercejs.products.list();
+  const merchant = await commerce.merchants.about();
+  const { data: categories } = await commerce.categories.list();
+  const { data: products } = await commerce.products.list();
 
   return {
     props: {

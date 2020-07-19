@@ -1,14 +1,14 @@
-import commercejs from "../../lib/commerce";
+import commerce from "../../lib/commerce";
 import ProductList from "../../components/ProductList";
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
 
-  const category = await commercejs.categories.retrieve(slug, {
+  const category = await commerce.categories.retrieve(slug, {
     type: "slug",
   });
 
-  const { data: products } = await commercejs.products.list({
+  const { data: products } = await commerce.products.list({
     category_slug: slug,
   });
 
@@ -21,7 +21,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const { data: categories } = await commercejs.categories.list();
+  const { data: categories } = await commerce.categories.list();
 
   return {
     paths: categories.map((category) => ({

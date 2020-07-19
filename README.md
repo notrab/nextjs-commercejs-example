@@ -14,7 +14,7 @@ This repo contains all of the code necessary to create a static commerce with Ne
 
 ## Build it with me
 
-Before you start, you'll want to create an account at [Chec](https://commercejs.com) or use the [CLI](https://github.com/chec/cli).
+Before you start, you'll want to create an account at [Chec](https://commerce.com) or use the [CLI](https://github.com/chec/cli).
 
 You'll also need to create a few categories, that have products to get the most out of this tutorial. Once you've done that, grab a copy of your public API key. You can find this at [Chec Dashboard > Developer Settings](https://dashboard.chec.io/settings/developer).
 
@@ -49,7 +49,7 @@ NEXT_PUBLIC_CHEC_PUBLIC_API_KEY=...
 
 With our initial Next.js setup created, and our `@chec/commerce.js` dependency installed, we'll now instantiate a new commerce instance, and make it available to import throughout the rest of our Next.js project.
 
-Inside a new directory `lib`, create the file `commerce.js`. Inside here we'll export a new instance of `@chec/commerce.js`, following the [Commerce.js Docs](https://commercejs.com/docs/api/#authentication).
+Inside a new directory `lib`, create the file `commerce.js`. Inside here we'll export a new instance of `@chec/commerce.js`, following the [Commerce.js Docs](https://commerce.com/docs/api/#authentication).
 
 ```js
 // lib/commerce.js
@@ -72,12 +72,12 @@ Inside `pages/index.js`, add the following:
 
 ```js
 // pages/index.js
-import commercejs from "../lib/commerce";
+import commerce from "../lib/commerce";
 
 export async function getStaticProps() {
-  const merchant = await commercejs.merchants.about();
-  const { data: categories } = await commercejs.categories.list();
-  const { data: products } = await commercejs.products.list();
+  const merchant = await commerce.merchants.about();
+  const { data: categories } = await commerce.categories.list();
+  const { data: products } = await commerce.products.list();
 
   return {
     props: {
@@ -188,11 +188,11 @@ Since our index page contains the links to all our categories, products, and mer
 Create a new file `products.js` inside `pages` directory, and add the following:
 
 ```js
-import commercejs from "../lib/commerce";
+import commerce from "../lib/commerce";
 import ProductList from "../components/ProductList";
 
 export async function getStaticProps() {
-  const { data: products } = await commercejs.products.list();
+  const { data: products } = await commerce.products.list();
 
   return {
     props: {
@@ -263,11 +263,11 @@ The only real difference here is that we returned a list of links that go to `/c
 Let's also do the same for categories. In a new file `categories.js` inside the `pages` directory, add the following:
 
 ```js
-import commercejs from "../lib/commerce";
+import commerce from "../lib/commerce";
 import CategoryList from "../components/CategoryList";
 
 export async function getStaticProps() {
-  const { data: categories } = await commercejs.categories.list();
+  const { data: categories } = await commerce.categories.list();
 
   return {
     props: {
@@ -359,20 +359,20 @@ This tells Next.js we want to use `slug` as a param to our page component.
 
 Inside `pages/categories/[slug].js` we will use the same `getStaticProps` method to fetch and provide static props to our page. We'll `retrieve` an existing category from Commerce.js, and while we're at it, we'll get all of the products belonging to that category.
 
-To do this, we can provide the current `slug` given to use by the current page path, to Commerce.js so we [filter](https://commercejs.com/docs/api/#list-all-products) [accordingly](https://commercejs.com/docs/api/#retrieve-category).
+To do this, we can provide the current `slug` given to use by the current page path, to Commerce.js so we [filter](https://commerce.com/docs/api/#list-all-products) [accordingly](https://commerce.com/docs/api/#retrieve-category).
 
 ```js
-import commercejs from "../../lib/commerce";
+import commerce from "../../lib/commerce";
 import ProductList from "../../components/ProductList";
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
 
-  const category = await commercejs.categories.retrieve(slug, {
+  const category = await commerce.categories.retrieve(slug, {
     type: "slug",
   });
 
-  const { data: products } = await commercejs.products.list({
+  const { data: products } = await commerce.products.list({
     category_slug: slug,
   });
 
@@ -393,7 +393,7 @@ This function must return a `paths` array that is the paths to our pages. We mus
 
 ```js
 export async function getStaticPaths() {
-  const { data: categories } = await commercejs.categories.list();
+  const { data: categories } = await commerce.categories.list();
 
   return {
     paths: categories.map((category) => ({
@@ -431,12 +431,12 @@ Inside of a new directory `products` inside `pages`, create the file `[permalink
 The contents of this file should be familiar:
 
 ```js
-import commercejs from "../../lib/commerce";
+import commerce from "../../lib/commerce";
 
 export async function getStaticProps({ params }) {
   const { permalink } = params;
 
-  const product = await commercejs.products.retrieve(permalink, {
+  const product = await commerce.products.retrieve(permalink, {
     type: "permalink",
   });
 
@@ -448,7 +448,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const { data: products } = await commercejs.products.list();
+  const { data: products } = await commerce.products.list();
 
   return {
     paths: products.map((product) => ({
