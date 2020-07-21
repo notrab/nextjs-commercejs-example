@@ -29,7 +29,7 @@ npm init -y
 npm install react react-dom next @chec/commerce.js
 ```
 
-Open `package.json` and add the following scripts:
+Open `package.json` and add the following `scripts`:
 
 ```js
 "scripts": {
@@ -45,7 +45,7 @@ Now create a new file `.env` and add your public API key here.
 NEXT_PUBLIC_CHEC_PUBLIC_API_KEY=...
 ```
 
-### 2. Create Commerce.js instance
+### 2. Create a Commerce.js instance
 
 With our initial Next.js setup created, and our `@chec/commerce.js` dependency installed, we'll now instantiate a new commerce instance, and make it available to import throughout the rest of our Next.js project.
 
@@ -60,7 +60,7 @@ const client = new CommerceSDK(process.env.NEXT_PUBLIC_CHEC_PUBLIC_API_KEY);
 export default client;
 ```
 
-### 3. Create index page of products
+### 3. Create homepage of categories and products
 
 Inside of the `pages` directory, we'll create the `index.js` file to show all our products.
 
