@@ -477,8 +477,8 @@ export default function ProductPage({ product }) {
 }
 ```
 
-That's it!
-
 ### 12. Run it locally
+
+That's it!
 
 Now you're ready to go! Type `npm run dev` in your Terminal, and head to the local port to browse your Next.js powered commerce site.
