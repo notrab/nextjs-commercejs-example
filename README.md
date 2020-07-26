@@ -14,7 +14,7 @@ This repo contains all of the code necessary to create a static commerce with Ne
 
 ## Build it with me
 
-Before you start, you'll want to create an account at [Chec](https://commerce.com) or use the [CLI](https://github.com/chec/cli).
+Before you start, you'll want to create an account at [Chec](https://commercejs.com) or use the [CLI](https://github.com/chec/cli).
 
 You'll also need to create a few categories, that have products to get the most out of this tutorial. Once you've done that, grab a copy of your public API key. You can find this at [Chec Dashboard > Developer Settings](https://dashboard.chec.io/settings/developer).
 
@@ -49,7 +49,7 @@ NEXT_PUBLIC_CHEC_PUBLIC_API_KEY=...
 
 With our initial Next.js setup created, and our `@chec/commerce.js` dependency installed, we'll now instantiate a new commerce instance, and make it available to import throughout the rest of our Next.js project.
 
-Inside a new directory `lib`, create the file `commerce.js`. Inside here we'll export a new instance of `@chec/commerce.js`, following the [Commerce.js Docs](https://commerce.com/docs/api/#authentication).
+Inside a new directory `lib`, create the file `commerce.js`. Inside here we'll export a new instance of `@chec/commerce.js`, following the [Commerce.js Docs](https://commercejs.com/docs/api/#authentication).
 
 ```js
 // lib/commerce.js
@@ -364,7 +364,7 @@ This tells Next.js we want to use `slug` as a param to our page component.
 
 Inside `pages/categories/[slug].js` we will use the same `getStaticProps` method to fetch and provide static props to our page. We'll `retrieve` an existing category from Commerce.js, and while we're at it, we'll get all of the products belonging to that category.
 
-To do this, we can provide the current `slug` given to use by the current page path, to Commerce.js so we [filter](https://commerce.com/docs/api/#list-all-products) [accordingly](https://commerce.com/docs/api/#retrieve-category).
+To do this, we can provide the current `slug` given to use by the current page path, to Commerce.js so we [filter](https://commercejs.com/docs/api/#list-all-products) [accordingly](https://commercejs.com/docs/api/#retrieve-category).
 
 ```js
 // pages/categories/[slug].js

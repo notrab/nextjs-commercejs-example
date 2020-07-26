@@ -1,4 +1,5 @@
 import commerce from "../../lib/commerce";
+import { useCartDispatch } from "../../context/cart";
 
 export async function getStaticProps({ params }) {
   const { permalink } = params;
@@ -28,10 +29,13 @@ export async function getStaticPaths() {
 }
 
 export default function ProductPage({ product }) {
+  const { addToCart } = useCartDispatch();
+
   return (
     <React.Fragment>
       <h1>{product.name}</h1>
       <p>{product.price.formatted_with_symbol}</p>
+      <button onClick={() => addToCart(product.id)}>Add to Cart</button>
     </React.Fragment>
   );
 }
