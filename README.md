@@ -4,7 +4,7 @@ This repo contains all of the code necessary to create a static commerce with Ne
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/notrab/nextjs-commercejs-example)
 
-[![Codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/notrab/nextjs-commercejs-example)
+[![Codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/notrab/nextjs-commercejs-example/tree/main)
 
 ## Run this locally
 
