@@ -1,3 +1,5 @@
+import React from "react";
+
 import commerce from "../lib/commerce";
 import CategoryList from "../components/CategoryList";
 
